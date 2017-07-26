@@ -1,0 +1,14 @@
+{
+  "name": "html-painting",
+  "version": "0.0.0",
+  "description": "Paint a picture with DIVs",
+  "main": "html-painting.js",
+  "dependencies": {
+    "module-library": "*",
+    "identifiable": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/erikpukinskis/html-painting.git"
+  }
+}
