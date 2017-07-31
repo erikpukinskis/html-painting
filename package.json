@@ -1,6 +1,6 @@
 {
   "name": "html-painting",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Paint a picture with DIVs",
   "main": "html-painting.js",
   "dependencies": {
