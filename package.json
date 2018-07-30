@@ -5,7 +5,8 @@
   "main": "html-painting.js",
   "dependencies": {
     "module-library": "*",
-    "identifiable": "*"
+    "identifiable": "*",
+    "add-html": "*"
   },
   "repository": {
     "type": "git",
