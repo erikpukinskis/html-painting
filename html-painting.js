@@ -20,6 +20,22 @@ module.exports = library.export(
       return id
     }
 
+    htmlPainting.dumpToElements = function(id) {
+      var colorList = colorListsById[id]
+      if (!colorList) {
+        throw new Error("No html-painting with id "+id)}
+
+      var boundsList = boundsListsById[id]
+
+      var children = colorList.map(
+        function(_, i) {
+          return renderSwatch(
+            colorList[i],
+            boundsList[i])})
+
+      return children
+    }
+
     htmlPainting.stroke = function(id, color, bounds) {
       if (!colorListsById[id]) {
         colorListsById[id] = []
@@ -47,9 +63,8 @@ module.exports = library.export(
       }
     }
 
-    function renderStroke(target, color, bounds) {
-
-      var swatch = element(
+    function renderSwatch(color, bounds) {
+      return element(
         element.style({
           "position": "absolute",
           "background": color,
@@ -59,6 +74,11 @@ module.exports = library.export(
           "height": (bounds.maxY - bounds.minY)+"px",
         })
       )
+    }
+
+    function renderStroke(target, color, bounds) {
+
+      var swatch = renderSwatch(color, bounds)
 
       if (Array.isArray(target)) {
         target.forEach(addStroke)
@@ -70,6 +90,7 @@ module.exports = library.export(
         addHtml.inside(node, swatch.html())
       }
     }
+
 
     htmlPainting.renderTo = function(id, selector) {
       var targets = renderTargets[id]
