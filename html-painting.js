@@ -64,16 +64,36 @@ module.exports = library.export(
     }
 
     function renderSwatch(color, bounds) {
+      var top = bounds.minY
+      var height = bounds.maxY - bounds.minY
+
+      if (bounds.minZ != null) {
+        var left = bounds.x + bounds.minZ
+        var width = bounds.maxZ - bounds.minZ
+        var transform = "skew(0deg, 15deg)"
+        var origin = "0% 0%"
+
+      } else {
+        var left = bounds.minX
+        var width = bounds.maxX - bounds.minX
+      }
+
+      var styles = {
+        "position": "absolute",
+        "background": color,
+        "left": left+"px",
+        "top": top+"px",
+        "width": width+"px",
+        "height": height+"px",
+      }
+
+      if (transform) {
+        styles["transform"] = transform
+        styles["transform-origin"] = origin
+      }
+
       return element(
-        element.style({
-          "position": "absolute",
-          "background": color,
-          "left": bounds.minX+"px",
-          "top": bounds.minY+"px",
-          "width": (bounds.maxX - bounds.minX)+"px",
-          "height": (bounds.maxY - bounds.minY)+"px",
-        })
-      )
+        element.style(styles))
     }
 
     function renderStroke(target, color, bounds) {
